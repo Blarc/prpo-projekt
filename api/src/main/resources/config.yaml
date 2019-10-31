@@ -4,8 +4,8 @@ kumuluzee:
   env:
     name: dev
   datasources:
-    - jndi-name: jdbc/NakupovalniSeznamiDS
-      connection-url: jdbc:postgresql://localhost:5432/nakupovalniseznami
+    - jndi-name: jdbc/postgresDB
+      connection-url: jdbc:postgresql://localhost:5432/postgresDB
       username: postgres
       password: postgres
       max-pool-size: 20

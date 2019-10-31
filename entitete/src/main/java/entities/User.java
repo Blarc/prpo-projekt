@@ -1,25 +1,20 @@
 package entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-@Entity(name="uporabnik")
-public class Uporabnik {
+@Entity(name="userA")
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
     private Integer id;
+    @Column(name="name")
     private String name;
+    @Column(name="last_name")
     private String lastName;
+    @Column(name="username")
     private String username;
-
-    public Uporabnik(String name, String lastName, String username) {
-        this.name = name;
-        this.lastName = lastName;
-        this.username = username;
-    }
 
     public Integer getId() {
         return id;
