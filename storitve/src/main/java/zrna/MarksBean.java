@@ -1,5 +1,6 @@
 package zrna;
 
+import entities.Mark;
 import entities.User;
 
 import javax.annotation.PostConstruct;
@@ -12,9 +13,9 @@ import java.util.UUID;
 import java.util.logging.Logger;
 
 @ApplicationScoped
-public class UsersBean {
+public class MarksBean {
 
-    private final Logger log = Logger.getLogger(UsersBean.class.getName());
+    private final Logger log = Logger.getLogger(MarksBean.class.getName());
     private String idBean;
 
     @PersistenceContext(unitName = "nakupovalni-seznami")
@@ -23,16 +24,16 @@ public class UsersBean {
     @PostConstruct
     private void init() {
         idBean = UUID.randomUUID().toString();
-        log.info("Inicializacija zrna " + UsersBean.class.getName() + " " + idBean);
+        log.info("Inicializacija zrna " + MarksBean.class.getName() + " " + idBean);
     }
 
     @PreDestroy
     private void destroy() {
-        log.info("Deinicializacija zrna " + UsersBean.class.getName() + " " + idBean);
+        log.info("Deinicializacija zrna " + MarksBean.class.getName() + " " + idBean);
     }
 
-    public List<User> getAllUsers() {
+    public List<Mark> getAllMarks(){
 
-        return em.createNamedQuery("User.getAll", User.class).getResultList();
+        return em.createNamedQuery("Mark.getAll", Mark.class).getResultList();
     }
 }

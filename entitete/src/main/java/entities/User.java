@@ -3,8 +3,12 @@ package entities;
 import javax.persistence.*;
 
 @Entity(name="userA")
+@Table(name="users")
+@NamedQueries(value =
+        {
+                @NamedQuery(name = "User.getAll", query = "SELECT u FROM userA u")
+        })
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")

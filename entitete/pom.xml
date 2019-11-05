@@ -15,7 +15,6 @@
         <dependency>
             <groupId>com.kumuluz.ee</groupId>
             <artifactId>kumuluzee-jpa-eclipselink</artifactId>
-            <version>3.5.0</version>
         </dependency>
         <dependency>
             <groupId>org.postgresql</groupId>
