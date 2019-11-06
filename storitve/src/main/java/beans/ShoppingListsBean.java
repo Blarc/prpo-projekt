@@ -1,4 +1,4 @@
-package zrna;
+package beans;
 
 import entities.ShoppingList;
 
@@ -7,6 +7,7 @@ import javax.annotation.PreDestroy;
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.UUID;
 import java.util.logging.Logger;
@@ -34,5 +35,13 @@ public class ShoppingListsBean {
     public List<ShoppingList> getAllShoppingLists() {
 
         return em.createNamedQuery("ShoppingList.getAll", ShoppingList.class).getResultList();
+    }
+
+    @Transactional
+    public ShoppingList add(ShoppingList u) {
+        if (u != null) {
+            em.persist(u);
+        }
+        return u;
     }
 }

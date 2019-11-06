@@ -1,7 +1,6 @@
-package zrna;
+package beans;
 
-import entities.Mark;
-import entities.User;
+import entities.Item;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -13,9 +12,9 @@ import java.util.UUID;
 import java.util.logging.Logger;
 
 @ApplicationScoped
-public class MarksBean {
+public class ItemsBean {
 
-    private final Logger log = Logger.getLogger(MarksBean.class.getName());
+    private final Logger log = Logger.getLogger(beans.ItemsBean.class.getName());
     private String idBean;
 
     @PersistenceContext(unitName = "nakupovalni-seznami")
@@ -24,16 +23,16 @@ public class MarksBean {
     @PostConstruct
     private void init() {
         idBean = UUID.randomUUID().toString();
-        log.info("Inicializacija zrna " + MarksBean.class.getName() + " " + idBean);
+        log.info("Incializacija zrna " + beans.ItemsBean.class.getName() + " " + idBean);
     }
 
     @PreDestroy
     private void destroy() {
-        log.info("Deinicializacija zrna " + MarksBean.class.getName() + " " + idBean);
+        log.info("Deinicializacija zrna " + beans.ItemsBean.class.getName() + " " + idBean);
     }
 
-    public List<Mark> getAllMarks(){
+    public List<Item> getAllItems() {
 
-        return em.createNamedQuery("Mark.getAll", Mark.class).getResultList();
+        return em.createNamedQuery("Item.getAll", Item.class).getResultList();
     }
 }

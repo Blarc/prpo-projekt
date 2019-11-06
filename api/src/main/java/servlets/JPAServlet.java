@@ -4,10 +4,10 @@ import entities.Item;
 import entities.Mark;
 import entities.ShoppingList;
 import entities.User;
-import zrna.ItemsBean;
-import zrna.MarksBean;
-import zrna.ShoppingListsBean;
-import zrna.UsersBean;
+import beans.ItemsBean;
+import beans.MarksBean;
+import beans.ShoppingListsBean;
+import beans.UsersBean;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -42,7 +42,7 @@ public class JPAServlet extends HttpServlet {
 
         printWriter.println("<html><body>");
 
-        List<User> users = usersBean.getAllUsers();
+        List<User> users = usersBean.getAll();
         printWriter.println("<h2>Uporabniki</h2>");
         for (User u: users) {
             printWriter.printf("<ul>%s %s %s %s</ul>", u.getId(), u.getName(), u.getLastName(), u.getUsername());

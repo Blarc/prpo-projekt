@@ -2,9 +2,8 @@ package entities;
 
 import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
+import java.time.Instant;
 import java.util.List;
-
-// INSTANT za kdaj je bil ustvarjen
 
 @Entity(name="shopping_list")
 @Table(name="shopping_lists")
@@ -23,6 +22,9 @@ public class ShoppingList {
 
     @Column(name="description")
     private String description;
+
+    @Column(name="time_created")
+    private Instant timeCreated;
 
     @JsonbTransient
     @ManyToOne
@@ -85,5 +87,13 @@ public class ShoppingList {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Instant getTimeCreated() {
+        return created;
+    }
+
+    public void setTimeCreated(Instant created) {
+        this.created = created;
     }
 }
