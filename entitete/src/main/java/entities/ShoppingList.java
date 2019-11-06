@@ -90,10 +90,10 @@ public class ShoppingList {
     }
 
     public Instant getTimeCreated() {
-        return created;
+        return timeCreated;
     }
 
     public void setTimeCreated(Instant created) {
-        this.created = created;
+        this.timeCreated = created;
     }
 }
