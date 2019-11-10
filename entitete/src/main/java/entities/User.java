@@ -1,6 +1,8 @@
 package entities;
 
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
+import java.util.List;
 
 @Entity(name="userA")
 @Table(name="users")

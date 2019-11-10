@@ -7,6 +7,9 @@ import javax.annotation.PreDestroy;
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.UUID;
@@ -30,6 +33,13 @@ public class UsersBean {
     @PreDestroy
     private void destroy() {
         log.info("Deinicializacija zrna " + UsersBean.class.getName() + " " + idBean);
+    }
+
+    public List<User> pridobiUporabnikeCriteriaAPI(){
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<User> query = cb.createQuery(User.class);
+        Root<User> from = query.from(User.class);
+        return em.createQuery(query).getResultList();
     }
 
     public List<User> getAll() {
