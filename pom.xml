@@ -18,8 +18,8 @@
     <description>Storitev za delo z nakupovalnimi seznami.</description>
 
     <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <kumuluzee.version>3.5.0</kumuluzee.version>
         <postgresql.version>42.2.8</postgresql.version>
