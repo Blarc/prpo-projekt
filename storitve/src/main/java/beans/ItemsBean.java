@@ -31,7 +31,7 @@ public class ItemsBean {
         log.info("Deinicializacija zrna " + beans.ItemsBean.class.getName() + " " + idBean);
     }
 
-    public List<Item> getAllItems() {
+    public List<Item> getAll() {
 
         return em.createNamedQuery("Item.getAll", Item.class).getResultList();
     }

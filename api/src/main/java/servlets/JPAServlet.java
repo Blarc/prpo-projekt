@@ -48,19 +48,19 @@ public class JPAServlet extends HttpServlet {
             printWriter.printf("<ul>%s %s %s %s</ul>", u.getId(), u.getName(), u.getLastName(), u.getUsername());
         }
 
-        List<ShoppingList> shoppingLists = shoppingListsBean.getAllShoppingLists();
+        List<ShoppingList> shoppingLists = shoppingListsBean.getAll();
         printWriter.println("<h2>Nakupovalni seznami</h2>");
         for (ShoppingList s: shoppingLists) {
             printWriter.printf("<ul>%s %s %s</ul>", s.getId(), s.getName(), s.getDescription());
         }
 
-        List<Mark> marks = marksBean.getAllMarks();
+        List<Mark> marks = marksBean.getAll();
         printWriter.println("<h2>Oznake</h2>");
         for (Mark m: marks) {
             printWriter.printf("<ul>%s %s %s</ul>", m.getId(), m.getAddress(), m.getDescription());
         }
 
-        List<Item> items = itemsBean.getAllItems();
+        List<Item> items = itemsBean.getAll();
         printWriter.println("<h2>Artikli</h2>");
         for (Item i: items) {
             printWriter.printf("<ul>%s %s %s</ul>", i.getId(), i.getName(), i.getDescription());

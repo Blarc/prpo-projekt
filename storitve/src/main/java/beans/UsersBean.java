@@ -1,5 +1,6 @@
 package beans;
 
+import anotations.CallCounter;
 import entities.User;
 
 import javax.annotation.PostConstruct;
@@ -35,13 +36,14 @@ public class UsersBean {
         log.info("Deinicializacija zrna " + UsersBean.class.getName() + " " + idBean);
     }
 
-    public List<User> pridobiUporabnikeCriteriaAPI(){
+    public List<User> getAllCriteriaAPI(){
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<User> query = cb.createQuery(User.class);
         Root<User> from = query.from(User.class);
         return em.createQuery(query).getResultList();
     }
 
+    @CallCounter
     public List<User> getAll() {
 
         return em.createNamedQuery("User.getAll", User.class).getResultList();
@@ -60,10 +62,12 @@ public class UsersBean {
     }
 
     @Transactional
-    public void update(int id, User u) {
+    public User update(int id, User u) {
         User old = get(id);
         u.setId(old.getId());
         em.merge(u);
+
+        return u;
     }
 
     @Transactional

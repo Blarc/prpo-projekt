@@ -31,7 +31,7 @@ public class MarksBean {
         log.info("Deinicializacija zrna " + MarksBean.class.getName() + " " + idBean);
     }
 
-    public List<Mark> getAllMarks(){
+    public List<Mark> getAll(){
 
         return em.createNamedQuery("Mark.getAll", Mark.class).getResultList();
     }

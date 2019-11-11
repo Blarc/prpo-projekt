@@ -32,7 +32,7 @@ public class ShoppingListsBean {
         log.info("Deinicializacija zrna " + ShoppingListsBean.class.getName() + " " + idBean);
     }
 
-    public List<ShoppingList> getAllShoppingLists() {
+    public List<ShoppingList> getAll() {
 
         return em.createNamedQuery("ShoppingList.getAll", ShoppingList.class).getResultList();
     }
