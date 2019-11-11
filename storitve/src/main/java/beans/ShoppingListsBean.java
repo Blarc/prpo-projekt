@@ -37,6 +37,7 @@ public class ShoppingListsBean {
         return em.createNamedQuery("ShoppingList.getAll", ShoppingList.class).getResultList();
     }
 
+
     @Transactional
     public ShoppingList add(ShoppingList u) {
         if (u != null) {
@@ -44,4 +45,6 @@ public class ShoppingListsBean {
         }
         return u;
     }
+
+    // TODO fdemsar CRUD operacije (glej UsersBean)
 }

@@ -26,27 +26,36 @@ public class MarksAPI {
     @GET
     @Path("{id}")
     public Response getMark(@PathParam("id") Integer id) {
-        // TODO Blarc
-        return null;
+        Mark mark = marksBean.get(id);
+        if (mark != null) {
+            return Response.ok(mark).build();
+        }
+        return Response.status(Response.Status.NOT_FOUND).build();
     }
 
     @POST
     public Response addMark(Mark mark) {
-        // TODO Blarc
-        return null;
+        return Response
+                .status(Response.Status.OK)
+                .entity(marksBean.add(mark))
+                .build();
     }
 
     @PUT
     @Path("{id}")
-    public Response updateMark(@PathParam("id") Integer id) {
-        // TODO Blarc
-        return null;
+    public Response updateMark(@PathParam("id") Integer id, Mark mark) {
+        return Response
+                .status(Response.Status.OK)
+                .entity(marksBean.update(id, mark))
+                .build();
     }
 
     @DELETE
     @Path("{id}")
     public Response deleteMark(@PathParam("id") Integer id) {
-        // TODO Blarc
-        return null;
+        return Response
+                .status(Response.Status.OK)
+                .entity(marksBean.remove(id))
+                .build();
     }
 }

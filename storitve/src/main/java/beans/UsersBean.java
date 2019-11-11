@@ -66,7 +66,6 @@ public class UsersBean {
         User old = get(id);
         u.setId(old.getId());
         em.merge(u);
-
         return u;
     }
 
@@ -76,7 +75,6 @@ public class UsersBean {
         if (u != null) {
             em.remove(u);
         }
-
         return id;
     }
 }

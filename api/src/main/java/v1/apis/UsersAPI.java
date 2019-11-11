@@ -30,9 +30,8 @@ public class UsersAPI {
 
         if (user != null) {
             return Response.ok(user).build();
-        } else {
-            return Response.status(Response.Status.NOT_FOUND).build();
         }
+        return Response.status(Response.Status.NOT_FOUND).build();
     }
 
     @POST

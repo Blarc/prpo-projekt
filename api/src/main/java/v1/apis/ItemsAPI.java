@@ -38,7 +38,7 @@ public class ItemsAPI {
 
     @PUT
     @Path("{id}")
-    public Response updateItem(@PathParam("id") Integer id) {
+    public Response updateItem(@PathParam("id") Integer id, Item item) {
         // TODO fdemsar
         return null;
     }

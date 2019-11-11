@@ -38,7 +38,7 @@ public class ShoppingListsAPI {
 
     @PUT
     @Path("{id}")
-    public Response updateShoppingList(@PathParam("id") Integer id) {
+    public Response updateShoppingList(@PathParam("id") Integer id, ShoppingList shoppingList) {
         // TODO fdemsar
         return null;
     }
