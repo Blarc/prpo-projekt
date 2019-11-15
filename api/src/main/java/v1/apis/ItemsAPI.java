@@ -26,27 +26,37 @@ public class ItemsAPI {
     @GET
     @Path("{id}")
     public Response getItem(@PathParam("id") Integer id) {
-        // TODO fdemsar
-        return null;
+        Item ajtm = itemsBean.get(id);
+
+        if (ajtm != null) {
+            return Response.ok(ajtm).build();
+        }
+        return Response.status(Response.Status.NOT_FOUND).build();
     }
 
     @POST
     public Response addItem(Item item) {
-        // TODO fdemsar
-        return null;
+        return Response
+                .status(Response.Status.OK)
+                .entity(itemsBean.add(item))
+                .build();
     }
 
     @PUT
     @Path("{id}")
     public Response updateItem(@PathParam("id") Integer id, Item item) {
-        // TODO fdemsar
-        return null;
+        return Response
+                .status(Response.Status.OK)
+                .entity(itemsBean.update(id, item))
+                .build();
     }
 
     @DELETE
     @Path("{id}")
     public Response deleteItem(@PathParam("id") Integer id) {
-        // TODO fdemsar
-        return null;
+        return Response
+                .status(Response.Status.OK)
+                .entity(itemsBean.remove(id))
+                .build();
     }
 }

@@ -38,13 +38,32 @@ public class ShoppingListsBean {
     }
 
 
+    // TODO fdemsar CRUD operacije (glej UsersBean)
+
+    public ShoppingList get(int shoppingListid){ return em.find(ShoppingList.class, shoppingListid);}
+
     @Transactional
-    public ShoppingList add(ShoppingList u) {
-        if (u != null) {
-            em.persist(u);
+    public ShoppingList add(ShoppingList a) {
+        if (a != null) {
+            em.persist(a);
         }
-        return u;
+        return a;
     }
 
-    // TODO fdemsar CRUD operacije (glej UsersBean)
+    @Transactional
+    public ShoppingList update(int id, ShoppingList a) {
+        ShoppingList old = get(id);
+        a.setId(old.getId());
+        em.merge(a);
+        return a;
+    }
+
+    @Transactional
+    public Integer remove(int id) {
+        ShoppingList a = get(id);
+        if (a != null) {
+            em.remove(a);
+        }
+        return id;
+    }
 }

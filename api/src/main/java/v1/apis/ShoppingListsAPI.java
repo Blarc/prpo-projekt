@@ -1,7 +1,9 @@
 package v1.apis;
 
 import beans.ShoppingListsBean;
+import dtos.ShoppingListDto;
 import entities.ShoppingList;
+import managers.ShoppingListManager;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -14,6 +16,8 @@ import javax.ws.rs.core.Response;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class ShoppingListsAPI {
+    @Inject
+    private ShoppingListManager sm;
 
     @Inject
     private ShoppingListsBean shoppingListsBean;
@@ -26,27 +30,42 @@ public class ShoppingListsAPI {
     @GET
     @Path("{id}")
     public Response getShoppingList(@PathParam("id") Integer id) {
-        // TODO fdemsar
-        return null;
+        ShoppingList sl = shoppingListsBean.get(id);
+
+        if (sl != null) {
+            return Response.ok(sl).build();
+        }
+        return Response.status(Response.Status.NOT_FOUND).build();
     }
 
     @POST
-    public Response addShoppingList(ShoppingList shoppingList) {
-        // TODO fdemsar
-        return null;
+    public Response addShoppingList(ShoppingListDto shoppingListdto) {
+        ShoppingList shoppingList = sm.createShoppingList(shoppingListdto);
+        if (shoppingList == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+        return Response
+                .status(Response.Status.OK)
+                .entity(shoppingList)
+                .build();
+
     }
 
     @PUT
     @Path("{id}")
     public Response updateShoppingList(@PathParam("id") Integer id, ShoppingList shoppingList) {
-        // TODO fdemsar
-        return null;
+        return Response
+                .status(Response.Status.OK)
+                .entity(shoppingListsBean.update(id, shoppingList))
+                .build();
     }
 
     @DELETE
     @Path("{id}")
     public Response deleteShoppingList(@PathParam("id") Integer id) {
-        // TODO fdemsar
-        return null;
+        return Response
+                .status(Response.Status.OK)
+                .entity(shoppingListsBean.remove(id))
+                .build();
     }
 }

@@ -36,6 +36,9 @@ public class UsersAPI {
 
     @POST
     public Response addUser(User user) {
+        if (user == null){
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
         return Response
                 .status(Response.Status.OK)
                 .entity(usersBean.add(user))
