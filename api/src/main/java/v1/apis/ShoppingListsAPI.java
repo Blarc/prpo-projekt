@@ -30,19 +30,18 @@ public class ShoppingListsAPI {
     @GET
     @Path("{id}")
     public Response getShoppingList(@PathParam("id") Integer id) {
-        ShoppingList sl = shoppingListsBean.get(id);
-
-        if (sl != null) {
-            return Response.ok(sl).build();
+        ShoppingList shoppingList = shoppingListsBean.get(id);
+        if (shoppingList != null) {
+            return Response.ok(shoppingList).build();
         }
         return Response.status(Response.Status.NOT_FOUND).build();
     }
 
     @POST
-    public Response addShoppingList(ShoppingListDto shoppingListdto) {
-        ShoppingList shoppingList = sm.createShoppingList(shoppingListdto);
+    public Response addShoppingList(ShoppingListDto shoppingListDto) {
+        ShoppingList shoppingList = sm.createShoppingList(shoppingListDto);
         if (shoppingList == null) {
-            return Response.status(Response.Status.NOT_FOUND).build();
+            return Response.status(Response.Status.BAD_REQUEST).build();
         }
         return Response
                 .status(Response.Status.OK)

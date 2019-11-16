@@ -155,3 +155,6 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+config.yaml
+META-INF/persistence.xml

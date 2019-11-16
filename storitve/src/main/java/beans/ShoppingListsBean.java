@@ -37,9 +37,6 @@ public class ShoppingListsBean {
         return em.createNamedQuery("ShoppingList.getAll", ShoppingList.class).getResultList();
     }
 
-
-    // TODO fdemsar CRUD operacije (glej UsersBean)
-
     public ShoppingList get(int shoppingListid){ return em.find(ShoppingList.class, shoppingListid);}
 
     @Transactional

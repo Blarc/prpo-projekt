@@ -38,8 +38,6 @@ public class ItemsBean {
         return em.createNamedQuery("Item.getAll", Item.class).getResultList();
     }
 
-    // TODO fdemsar CRUD operacije (glej UsersBean)
-
     public Item get(int itemId){ return em.find(Item.class, itemId);}
 
     @Transactional

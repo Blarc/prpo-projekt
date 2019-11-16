@@ -26,10 +26,9 @@ public class ItemsAPI {
     @GET
     @Path("{id}")
     public Response getItem(@PathParam("id") Integer id) {
-        Item ajtm = itemsBean.get(id);
-
-        if (ajtm != null) {
-            return Response.ok(ajtm).build();
+        Item item = itemsBean.get(id);
+        if (item != null) {
+            return Response.ok(item).build();
         }
         return Response.status(Response.Status.NOT_FOUND).build();
     }
