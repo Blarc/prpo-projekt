@@ -42,7 +42,7 @@ public class JPAServlet extends HttpServlet {
 
         printWriter.println("<html><body>");
 
-        List<User> users = usersBean.getAll();
+        List<User> users = usersBean.getAllCriteriaAPI();
         printWriter.println("<h2>Uporabniki</h2>");
         for (User u: users) {
             printWriter.printf("<ul>%s %s %s %s</ul>", u.getId(), u.getName(), u.getLastName(), u.getUsername());
