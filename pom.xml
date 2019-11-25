@@ -21,8 +21,10 @@
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <kumuluzee.version>3.5.0</kumuluzee.version>
         <postgresql.version>42.2.8</postgresql.version>
+        <kumuluzee.version>3.5.0</kumuluzee.version>
+        <kumuluzee-rest.version>1.2.3</kumuluzee-rest.version>
+        <kumuluzee-openapi.version>1.0.1</kumuluzee-openapi.version>
     </properties>
 
     <dependencyManagement>

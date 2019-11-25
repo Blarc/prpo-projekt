@@ -1,12 +1,13 @@
 package beans;
 
 import anotations.CallCounter;
+import com.kumuluz.ee.rest.beans.QueryParameters;
+import com.kumuluz.ee.rest.utils.JPAUtils;
 import entities.User;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -44,10 +45,17 @@ public class UsersBean {
         return em.createQuery(query).getResultList();
     }
 
-    @CallCounter
     public List<User> getAll() {
-
         return em.createNamedQuery("User.getAll", User.class).getResultList();
+    }
+
+    @CallCounter
+    public List<User> getAll(QueryParameters queryParams) {
+        return JPAUtils.queryEntities(em, User.class, queryParams);
+    }
+
+    public Long getAllCount(QueryParameters queryParams) {
+        return JPAUtils.queryEntitiesCount(em, User.class, queryParams);
     }
 
     public User get(int userId) {

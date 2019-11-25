@@ -1,5 +1,7 @@
 package beans;
 
+import com.kumuluz.ee.rest.beans.QueryParameters;
+import com.kumuluz.ee.rest.utils.JPAUtils;
 import entities.Item;
 import entities.User;
 
@@ -36,6 +38,14 @@ public class ItemsBean {
     public List<Item> getAll() {
 
         return em.createNamedQuery("Item.getAll", Item.class).getResultList();
+    }
+
+    public List<Item> getAll(QueryParameters queryParams) {
+        return JPAUtils.queryEntities(em, Item.class, queryParams);
+    }
+
+    public Long getAllCount(QueryParameters queryParams) {
+        return JPAUtils.queryEntitiesCount(em, Item.class, queryParams);
     }
 
     public Item get(int itemId){ return em.find(Item.class, itemId);}

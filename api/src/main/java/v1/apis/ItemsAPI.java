@@ -1,13 +1,16 @@
 package v1.apis;
 
 import beans.ItemsBean;
+import com.kumuluz.ee.rest.beans.QueryParameters;
 import entities.Item;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
 
 @ApplicationScoped
 @Path("items")
@@ -15,12 +18,19 @@ import javax.ws.rs.core.Response;
 @Produces(MediaType.APPLICATION_JSON)
 public class ItemsAPI {
 
+    @Context
+    protected UriInfo uriInfo;
+
     @Inject
     private ItemsBean itemsBean;
 
     @GET
     public Response getAll() {
-        return Response.ok(itemsBean.getAll()).build();
+        QueryParameters queryParams = QueryParameters.query(uriInfo.getRequestUri().getQuery()).build();
+        return Response
+                .ok(itemsBean.getAll(queryParams))
+                .header("X-Total-Count", itemsBean.getAllCount(queryParams))
+                .build();
     }
 
     @GET

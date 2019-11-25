@@ -1,13 +1,16 @@
 package v1.apis;
 
 import beans.UsersBean;
+import com.kumuluz.ee.rest.beans.QueryParameters;
 import entities.User;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
 
 @ApplicationScoped
 @Path("users")
@@ -15,12 +18,19 @@ import javax.ws.rs.core.Response;
 @Produces(MediaType.APPLICATION_JSON)
 public class UsersAPI {
 
+    @Context
+    protected UriInfo uriInfo;
+
     @Inject
     private UsersBean usersBean;
 
     @GET
     public Response getAll() {
-        return Response.ok(usersBean.getAll()).build();
+        QueryParameters queryParams = QueryParameters.query(uriInfo.getRequestUri().getQuery()).build();
+        return Response
+                .ok(usersBean.getAll(queryParams))
+                .header("X-Total-Count", usersBean.getAllCount(queryParams))
+                .build();
     }
 
     @GET

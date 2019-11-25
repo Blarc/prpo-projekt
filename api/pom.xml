@@ -24,5 +24,10 @@
             <groupId>si.fri.prpo.nakupovalniseznami</groupId>
             <artifactId>storitve</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.kumuluz.ee.openapi</groupId>
+            <artifactId>kumuluzee-openapi</artifactId>
+            <version>${kumuluzee-openapi.version}</version>
+        </dependency>
     </dependencies>
 </project>
