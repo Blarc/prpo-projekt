@@ -21,6 +21,8 @@ public class User {
     private String lastName;
     @Column(name="username")
     private String username;
+    @OneToMany(mappedBy = "user")
+    private List<ShoppingList> shoppingList;
 
     public Integer getId() {
         return id;
@@ -52,6 +54,14 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public List<ShoppingList> getShoppingList() {
+        return shoppingList;
+    }
+
+    public void setShoppingList(List<ShoppingList> shoppingList) {
+        this.shoppingList = shoppingList;
     }
 }
 
