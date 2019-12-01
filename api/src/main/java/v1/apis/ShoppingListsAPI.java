@@ -45,14 +45,18 @@ public class ShoppingListsAPI {
         }
         return Response
                 .status(Response.Status.OK)
-                .entity(shoppingList)
+                .entity(shoppingListsBean.add(shoppingList))
                 .build();
 
     }
 
     @PUT
     @Path("{id}")
-    public Response updateShoppingList(@PathParam("id") Integer id, ShoppingList shoppingList) {
+    public Response updateShoppingList(@PathParam("id") Integer id, ShoppingListDto shoppingListDto) {
+        ShoppingList shoppingList = sm.updateShoppingList(id, shoppingListDto);
+        if (shoppingList == null) {
+            return Response.status(Response.Status.BAD_REQUEST).build();
+        }
         return Response
                 .status(Response.Status.OK)
                 .entity(shoppingListsBean.update(id, shoppingList))

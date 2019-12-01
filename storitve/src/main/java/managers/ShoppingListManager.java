@@ -43,7 +43,7 @@ public class ShoppingListManager {
         log.info("Deinicializacija zrna " + ShoppingListManager.class.getName() + " " + idBean);
     }
 
-    public ShoppingList createShoppingList(ShoppingListDto shoppingListDto) {
+    private ShoppingList createShoppingListFromDto(ShoppingListDto shoppingListDto) {
 
         User user = usersBean.get(shoppingListDto.getUserId());
 
@@ -56,9 +56,31 @@ public class ShoppingListManager {
         shoppingList.setUser(user);
         shoppingList.setName(shoppingListDto.getName());
         shoppingList.setDescription(shoppingListDto.getDescription());
-        shoppingList.setTimeCreated(Instant.now());
+        // shoppingList.setTimeCreated(Instant.now());
+
+        return shoppingList;
+    }
+
+    public ShoppingList createShoppingList(ShoppingListDto shoppingListDto) {
+
+        ShoppingList shoppingList = createShoppingListFromDto(shoppingListDto);
+
+        if (shoppingList ==  null) {
+            return null;
+        }
 
         return shoppingListsBean.add(shoppingList);
+    }
+
+    public ShoppingList updateShoppingList(int id, ShoppingListDto shoppingListDto) {
+
+        ShoppingList shoppingList = createShoppingListFromDto(shoppingListDto);
+
+        if (shoppingList == null) {
+            return null;
+        }
+
+        return shoppingListsBean.update(id, shoppingList);
     }
 
     public ShoppingList addItemToShoppingList(ShoppingList shoppingList, Integer itemId) {

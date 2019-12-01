@@ -23,10 +23,9 @@ public class ShoppingList {
     @Column(name="description")
     private String description;
 
-    @Column(name="time_created")
-    private Instant timeCreated;
+    // @Column(name="time_created")
+    // private Instant timeCreated;
 
-    @JsonbTransient
     @ManyToOne
     @JoinColumn(name="user_id")
     private User user;
@@ -89,11 +88,12 @@ public class ShoppingList {
         this.description = description;
     }
 
-    public Instant getTimeCreated() {
+    /*public Instant getTimeCreated() {
         return timeCreated;
     }
 
     public void setTimeCreated(Instant created) {
         this.timeCreated = created;
     }
+    */
 }
