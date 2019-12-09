@@ -1,16 +1,15 @@
 package servlets;
 
-import entities.Item;
-import entities.Mark;
-import entities.ShoppingList;
-import entities.User;
 import beans.ItemsBean;
 import beans.MarksBean;
 import beans.ShoppingListsBean;
 import beans.UsersBean;
+import entities.Item;
+import entities.Mark;
+import entities.ShoppingList;
+import entities.User;
 
 import javax.inject.Inject;
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +19,7 @@ import java.io.PrintWriter;
 import java.util.List;
 
 @WebServlet("/servlet")
-public class JPAServlet extends HttpServlet {
+public class Servlet extends HttpServlet {
 
     @Inject
     private UsersBean usersBean;
@@ -35,12 +34,15 @@ public class JPAServlet extends HttpServlet {
     private ItemsBean itemsBean;
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
         resp.setContentType("text/html; chatset=UTF-8");
         PrintWriter printWriter = resp.getWriter();
 
         printWriter.println("<html><body>");
+
+        printWriter.println("<h1>Spletna trgovina</h1>");
+        printWriter.println("<p>Dobrodosli na glavni strani.</p>");
 
         List<User> users = usersBean.getAllCriteriaAPI();
         printWriter.println("<h2>Uporabniki</h2>");

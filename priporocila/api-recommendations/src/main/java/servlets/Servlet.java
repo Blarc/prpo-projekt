@@ -18,7 +18,10 @@ public class Servlet extends HttpServlet {
         resp.setContentType("text/html; chatset=UTF-8");
         PrintWriter printWriter = resp.getWriter();
         printWriter.println("<html><body>");
-        printWriter.println("<h1> Hello World </h1>");
+
+        printWriter.println("<h1>Priporocila</h1>");
+        printWriter.println("<p>Dobrodosli na pomozni storitvi.</p>");
+
         printWriter.println("</body></html>");
         printWriter.close();
 

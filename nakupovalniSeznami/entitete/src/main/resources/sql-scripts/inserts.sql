@@ -8,10 +8,10 @@ INSERT INTO users (id, name, last_name, username) VALUES (DEFAULT, 'Peter', 'Mal
 INSERT INTO users (id, name, last_name, username) VALUES (DEFAULT, 'Janez', 'Demsar', 'janezDemsar');
 INSERT INTO users (id, name, last_name, username) VALUES (DEFAULT, 'Luka', 'Gril', 'lukaGril');
 
-INSERT INTO items (id, description, name) VALUES (DEFAULT, 'Egg yolks and whole eggs store significant amounts of protein and choline,[2][3] and are widely used in cookery.', 'Eggs');
-INSERT INTO items (id, description, name) VALUES (DEFAULT, 'Milk is a nutrient-rich, white liquid food produced by the mammary glands of mammals.', 'Milk');
-INSERT INTO items (id, description, name) VALUES (DEFAULT, 'Ham is pork from a leg cut that has been preserved by wet or dry curing, with or without smoking.', 'Ham');
-INSERT INTO items (id, description, name) VALUES (DEFAULT, 'Bread is a staple food prepared from a dough of flour and water, usually by baking.', 'Bread');
+INSERT INTO items (id, description, name) VALUES (1, 'Egg yolks and whole eggs store significant amounts of protein and choline, and are widely used in cookery.', 'Eggs');
+INSERT INTO items (id, description, name) VALUES (2, 'Milk is a nutrient-rich, white liquid food produced by the mammary glands of mammals.', 'Milk');
+INSERT INTO items (id, description, name) VALUES (3, 'Ham is pork from a leg cut that has been preserved by wet or dry curing, with or without smoking.', 'Ham');
+INSERT INTO items (id, description, name) VALUES (4, 'Bread is a staple food prepared from a dough of flour and water, usually by baking.', 'Bread');
 
 INSERT INTO marks (id, address, description) VALUES (DEFAULT, 'Tabor 12', 'New description.');
 INSERT INTO marks (id, address, description) VALUES (DEFAULT, 'Vecna pot 113', 'New description.');
