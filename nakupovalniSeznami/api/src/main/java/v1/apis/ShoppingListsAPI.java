@@ -1,47 +1,62 @@
 package v1.apis;
 
 import beans.ShoppingListsBean;
+import com.kumuluz.ee.rest.beans.QueryParameters;
 import dtos.ShoppingListDto;
 import entities.ShoppingList;
+import exceptions.IllegalShoppingListDtoException;
 import managers.ShoppingListManager;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
 
 @ApplicationScoped
 @Path("shoppingLists")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class ShoppingListsAPI {
+
+    @Context
+    protected UriInfo uriInfo;
+
     @Inject
     private ShoppingListManager sm;
 
     @Inject
     private ShoppingListsBean shoppingListsBean;
 
+    // TODO fdemsar @Operation annotation (glej UsersAPI)
     @GET
     public Response getAll() {
-        return Response.ok(shoppingListsBean.getAll()).build();
+        QueryParameters queryParams = QueryParameters.query(uriInfo.getRequestUri().getQuery()).build();
+        return Response
+                .ok(shoppingListsBean.getAll(queryParams))
+                .header("X-Total-Count", shoppingListsBean.getAllCount(queryParams))
+                .build();
     }
 
+    // TODO fdemsar @Operation annotation (glej UsersAPI)
     @GET
     @Path("{id}")
     public Response getShoppingList(@PathParam("id") Integer id) {
         ShoppingList shoppingList = shoppingListsBean.get(id);
-        if (shoppingList != null) {
-            return Response.ok(shoppingList).build();
+        if (shoppingList == null) {
+            return Response.status(Response.Status.BAD_REQUEST).build();
         }
-        return Response.status(Response.Status.NOT_FOUND).build();
+        return Response.ok(shoppingList).build();
     }
 
+    // TODO fdemsar @Operation annotation (glej UsersAPI)
     @POST
     public Response addShoppingList(ShoppingListDto shoppingListDto) {
         ShoppingList shoppingList = sm.createShoppingList(shoppingListDto);
         if (shoppingList == null) {
-            return Response.status(Response.Status.BAD_REQUEST).build();
+            throw new IllegalShoppingListDtoException("Invalid parameters!");
         }
         return Response
                 .status(Response.Status.OK)
@@ -50,12 +65,13 @@ public class ShoppingListsAPI {
 
     }
 
+    // TODO fdemsar @Operation annotation (glej UsersAPI)
     @PUT
     @Path("{id}")
     public Response updateShoppingList(@PathParam("id") Integer id, ShoppingListDto shoppingListDto) {
         ShoppingList shoppingList = sm.updateShoppingList(id, shoppingListDto);
         if (shoppingList == null) {
-            return Response.status(Response.Status.BAD_REQUEST).build();
+            throw new IllegalShoppingListDtoException("Invalid parameters!");
         }
         return Response
                 .status(Response.Status.OK)
@@ -63,6 +79,7 @@ public class ShoppingListsAPI {
                 .build();
     }
 
+    // TODO fdemsar @Operation annotation (glej UsersAPI)
     @DELETE
     @Path("{id}")
     public Response deleteShoppingList(@PathParam("id") Integer id) {

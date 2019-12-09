@@ -1,5 +1,7 @@
 package beans;
 
+import com.kumuluz.ee.rest.beans.QueryParameters;
+import com.kumuluz.ee.rest.utils.JPAUtils;
 import entities.ShoppingList;
 
 import javax.annotation.PostConstruct;
@@ -37,7 +39,17 @@ public class ShoppingListsBean {
         return em.createNamedQuery("ShoppingList.getAll", ShoppingList.class).getResultList();
     }
 
-    public ShoppingList get(int shoppingListid){ return em.find(ShoppingList.class, shoppingListid);}
+    public List<ShoppingList> getAll(QueryParameters queryParams) {
+        return JPAUtils.queryEntities(em, ShoppingList.class, queryParams);
+    }
+
+    public Long getAllCount(QueryParameters queryParams) {
+        return JPAUtils.queryEntitiesCount(em, ShoppingList.class, queryParams);
+    }
+
+    public ShoppingList get(int shoppingListid) {
+        return em.find(ShoppingList.class, shoppingListid);
+    }
 
     @Transactional
     public ShoppingList add(ShoppingList a) {

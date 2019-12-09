@@ -14,20 +14,21 @@ import java.util.List;
 public class ShoppingList {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
+    @Column(name = "id")
     private Integer id;
 
-    @Column(name="name")
+    @Column(name = "name")
     private String name;
 
-    @Column(name="description")
+    @Column(name = "description")
     private String description;
 
-    // @Column(name="time_created")
-    // private Instant timeCreated;
+    @Column(name = "time_created")
+    private Instant timeCreated;
 
+    @JsonbTransient
     @ManyToOne
-    @JoinColumn(name="user_id")
+    @JoinColumn(name = "user_id")
     private User user;
 
     @OneToMany(mappedBy = "shoppingList")
@@ -35,8 +36,8 @@ public class ShoppingList {
 
     @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinTable(name = "shopping_list_mark",
-        joinColumns = @JoinColumn(name = "shopping_list_id"),
-        inverseJoinColumns = @JoinColumn(name = "mark_id")
+            joinColumns = @JoinColumn(name = "shopping_list_id"),
+            inverseJoinColumns = @JoinColumn(name = "mark_id")
     )
     private List<Mark> marks;
 
@@ -88,12 +89,12 @@ public class ShoppingList {
         this.description = description;
     }
 
-    /*public Instant getTimeCreated() {
+    public Instant getTimeCreated() {
         return timeCreated;
     }
 
     public void setTimeCreated(Instant created) {
         this.timeCreated = created;
     }
-    */
 }
+

@@ -10,7 +10,6 @@ import io.swagger.v3.oas.annotations.servers.Server;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
-// TODO fix this
 @SecurityScheme(name = "openid-connect", type = SecuritySchemeType.OPENIDCONNECT,
         openIdConnectUrl = "http://auth-server-url/.well-known/openid-configuration")
 @OpenAPIDefinition(
@@ -19,13 +18,14 @@ import javax.ws.rs.core.Application;
                 version = "v1",
                 contact = @Contact(),
                 license = @License(),
-                description = "JavaSI API for managing conference."
+                description = "Java API for managing e-shopping."
         ),
         security = @SecurityRequirement(
                 name = "openid-connect"
         ),
         servers = @Server(
-                url ="http://localhost:8080/v1"
+                url = "http://localhost:8080/v1",
+                description = "Public api"
         )
 )
 @ApplicationPath("v1")
