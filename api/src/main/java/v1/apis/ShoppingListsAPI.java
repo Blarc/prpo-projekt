@@ -4,6 +4,7 @@ import beans.ShoppingListsBean;
 import com.kumuluz.ee.rest.beans.QueryParameters;
 import dtos.ShoppingListDto;
 import entities.ShoppingList;
+import exceptions.IllegalShoppingListDtoException;
 import managers.ShoppingListManager;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -44,10 +45,10 @@ public class ShoppingListsAPI {
     @Path("{id}")
     public Response getShoppingList(@PathParam("id") Integer id) {
         ShoppingList shoppingList = shoppingListsBean.get(id);
-        if (shoppingList != null) {
-            return Response.ok(shoppingList).build();
+        if (shoppingList == null) {
+            return Response.status(Response.Status.BAD_REQUEST).build();
         }
-        return Response.status(Response.Status.NOT_FOUND).build();
+        return Response.ok(shoppingList).build();
     }
 
     // TODO fdemsar @Operation annotation (glej UsersAPI)
@@ -55,7 +56,7 @@ public class ShoppingListsAPI {
     public Response addShoppingList(ShoppingListDto shoppingListDto) {
         ShoppingList shoppingList = sm.createShoppingList(shoppingListDto);
         if (shoppingList == null) {
-            return Response.status(Response.Status.BAD_REQUEST).build();
+            throw new IllegalShoppingListDtoException("Invalid parameters!");
         }
         return Response
                 .status(Response.Status.OK)
@@ -70,7 +71,7 @@ public class ShoppingListsAPI {
     public Response updateShoppingList(@PathParam("id") Integer id, ShoppingListDto shoppingListDto) {
         ShoppingList shoppingList = sm.updateShoppingList(id, shoppingListDto);
         if (shoppingList == null) {
-            return Response.status(Response.Status.BAD_REQUEST).build();
+            throw new IllegalShoppingListDtoException("Invalid parameters!");
         }
         return Response
                 .status(Response.Status.OK)
