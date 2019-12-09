@@ -1,5 +1,7 @@
 package apis;
 
+import entities.Item;
+
 import javax.annotation.PostConstruct;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -12,15 +14,14 @@ import java.util.stream.Collectors;
 @Produces(MediaType.APPLICATION_JSON)
 public class RecommendationsAPI {
 
-    // TODO fdemsar FIX ME
     private Map<Item, Integer> recommendations;
 
     @PostConstruct
     private void init() {
         recommendations = new HashMap<>();
-        recommendations.put("Mleko", 4);
-        recommendations.put("Kruh", 6);
-        recommendations.put("Sir", 3);
+        recommendations.put(new Item(1, "Mleko", ""), 4);
+        recommendations.put(new Item(2, "Kruh", ""), 6);
+        recommendations.put(new Item(3, "Sir", ""), 3);
     }
 
     @GET
@@ -31,7 +32,9 @@ public class RecommendationsAPI {
                 .stream()
                 .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
                 .collect(Collectors.toMap(
-                        Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1 , LinkedHashMap::new
+                        e -> e.getKey().getId(),
+                        Map.Entry::getValue,
+                        (e1, e2) -> e1 , LinkedHashMap::new
                 ))
         ).build();
     }
