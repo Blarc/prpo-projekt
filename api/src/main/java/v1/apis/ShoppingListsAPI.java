@@ -1,6 +1,7 @@
 package v1.apis;
 
 import beans.ShoppingListsBean;
+import com.kumuluz.ee.rest.beans.QueryParameters;
 import dtos.ShoppingListDto;
 import entities.ShoppingList;
 import managers.ShoppingListManager;
@@ -8,14 +9,20 @@ import managers.ShoppingListManager;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
 
 @ApplicationScoped
 @Path("shoppingLists")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class ShoppingListsAPI {
+
+    @Context
+    protected UriInfo uriInfo;
+
     @Inject
     private ShoppingListManager sm;
 
@@ -24,7 +31,11 @@ public class ShoppingListsAPI {
 
     @GET
     public Response getAll() {
-        return Response.ok(shoppingListsBean.getAll()).build();
+        QueryParameters queryParams = QueryParameters.query(uriInfo.getRequestUri().getQuery()).build();
+        return Response
+                .ok(shoppingListsBean.getAll(queryParams))
+                .header("X-Total-Count", shoppingListsBean.getAllCount(queryParams))
+                .build();
     }
 
     @GET
