@@ -24,7 +24,7 @@ public class MarksAPI {
     @Inject
     private MarksBean marksBean;
 
-
+    // TODO fdemsar @Operation annotation (glej UsersAPI)
     @GET
     public Response getAll() {
         QueryParameters queryParams = QueryParameters.query(uriInfo.getRequestUri().getQuery()).build();
@@ -34,6 +34,7 @@ public class MarksAPI {
                 .build();
     }
 
+    // TODO fdemsar @Operation annotation (glej UsersAPI)
     @GET
     @Path("{id}")
     public Response getMark(@PathParam("id") Integer id) {
@@ -44,6 +45,7 @@ public class MarksAPI {
         return Response.status(Response.Status.NOT_FOUND).build();
     }
 
+    // TODO fdemsar @Operation annotation (glej UsersAPI)
     @POST
     public Response addMark(Mark mark) {
         return Response
@@ -52,6 +54,7 @@ public class MarksAPI {
                 .build();
     }
 
+    // TODO fdemsar @Operation annotation (glej UsersAPI)
     @PUT
     @Path("{id}")
     public Response updateMark(@PathParam("id") Integer id, Mark mark) {
@@ -61,6 +64,7 @@ public class MarksAPI {
                 .build();
     }
 
+    // TODO fdemsar @Operation annotation (glej UsersAPI)
     @DELETE
     @Path("{id}")
     public Response deleteMark(@PathParam("id") Integer id) {

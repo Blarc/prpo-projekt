@@ -29,6 +29,7 @@ public class ShoppingListsAPI {
     @Inject
     private ShoppingListsBean shoppingListsBean;
 
+    // TODO fdemsar @Operation annotation (glej UsersAPI)
     @GET
     public Response getAll() {
         QueryParameters queryParams = QueryParameters.query(uriInfo.getRequestUri().getQuery()).build();
@@ -38,6 +39,7 @@ public class ShoppingListsAPI {
                 .build();
     }
 
+    // TODO fdemsar @Operation annotation (glej UsersAPI)
     @GET
     @Path("{id}")
     public Response getShoppingList(@PathParam("id") Integer id) {
@@ -48,6 +50,7 @@ public class ShoppingListsAPI {
         return Response.status(Response.Status.NOT_FOUND).build();
     }
 
+    // TODO fdemsar @Operation annotation (glej UsersAPI)
     @POST
     public Response addShoppingList(ShoppingListDto shoppingListDto) {
         ShoppingList shoppingList = sm.createShoppingList(shoppingListDto);
@@ -61,6 +64,7 @@ public class ShoppingListsAPI {
 
     }
 
+    // TODO fdemsar @Operation annotation (glej UsersAPI)
     @PUT
     @Path("{id}")
     public Response updateShoppingList(@PathParam("id") Integer id, ShoppingListDto shoppingListDto) {
@@ -74,6 +78,7 @@ public class ShoppingListsAPI {
                 .build();
     }
 
+    // TODO fdemsar @Operation annotation (glej UsersAPI)
     @DELETE
     @Path("{id}")
     public Response deleteShoppingList(@PathParam("id") Integer id) {

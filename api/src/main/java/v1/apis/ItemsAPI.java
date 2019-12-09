@@ -24,6 +24,7 @@ public class ItemsAPI {
     @Inject
     private ItemsBean itemsBean;
 
+    // TODO fdemsar @Operation annotation (glej UsersAPI)
     @GET
     public Response getAll() {
         QueryParameters queryParams = QueryParameters.query(uriInfo.getRequestUri().getQuery()).build();
@@ -33,6 +34,7 @@ public class ItemsAPI {
                 .build();
     }
 
+    // TODO fdemsar @Operation annotation (glej UsersAPI)
     @GET
     @Path("{id}")
     public Response getItem(@PathParam("id") Integer id) {
@@ -43,6 +45,7 @@ public class ItemsAPI {
         return Response.status(Response.Status.NOT_FOUND).build();
     }
 
+    // TODO fdemsar @Operation annotation (glej UsersAPI)
     @POST
     public Response addItem(Item item) {
         return Response
@@ -51,6 +54,7 @@ public class ItemsAPI {
                 .build();
     }
 
+    // TODO fdemsar @Operation annotation (glej UsersAPI)
     @PUT
     @Path("{id}")
     public Response updateItem(@PathParam("id") Integer id, Item item) {
@@ -60,6 +64,7 @@ public class ItemsAPI {
                 .build();
     }
 
+    // TODO fdemsar @Operation annotation (glej UsersAPI)
     @DELETE
     @Path("{id}")
     public Response deleteItem(@PathParam("id") Integer id) {
