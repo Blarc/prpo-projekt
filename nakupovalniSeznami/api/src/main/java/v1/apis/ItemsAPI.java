@@ -12,8 +12,6 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 @ApplicationScoped
 @Path("items")
@@ -33,28 +31,27 @@ public class ItemsAPI {
     // TODO fdemsar @Operation annotation (glej UsersAPI)
     @GET
     public Response getAll() {
-        QueryParameters queryParams = QueryParameters.query(uriInfo.getRequestUri().getQuery()).build();
+        QueryParameters queryParams = QueryParameters.query(this.uriInfo.getRequestUri().getQuery()).build();
         return Response
-                .ok(itemsBean.getAll(queryParams))
-                .header("X-Total-Count", itemsBean.getAllCount(queryParams))
+                .ok(this.itemsBean.getAll(queryParams))
+                .header("X-Total-Count", this.itemsBean.getAllCount(queryParams))
                 .build();
     }
 
+    // TODO fdemsar @Operation annotation (glej UsersAPI)
     @GET
-    @Path("/recommended")
+    @Path("/recommendations")
     public Response getRecommended() {
-//        Map<String, Integer> recommendations = ((Map<String, Integer>) recommendationsManager.getRecommendations());
-        return Response.ok(
-                recommendationsManager.getRecommendations().stream()
-                .map(v -> itemsBean.get(v))
-        ).build();
+        return Response
+                .ok(this.recommendationsManager.getRecommendations())
+                .build();
     }
 
     // TODO fdemsar @Operation annotation (glej UsersAPI)
     @GET
     @Path("{id}")
     public Response getItem(@PathParam("id") Integer id) {
-        Item item = itemsBean.get(id);
+        Item item = this.itemsBean.get(id);
         if (item != null) {
             return Response.ok(item).build();
         }
@@ -66,7 +63,7 @@ public class ItemsAPI {
     public Response addItem(Item item) {
         return Response
                 .status(Response.Status.OK)
-                .entity(itemsBean.add(item))
+                .entity(this.itemsBean.add(item))
                 .build();
     }
 
@@ -76,7 +73,7 @@ public class ItemsAPI {
     public Response updateItem(@PathParam("id") Integer id, Item item) {
         return Response
                 .status(Response.Status.OK)
-                .entity(itemsBean.update(id, item))
+                .entity(this.itemsBean.update(id, item))
                 .build();
     }
 
@@ -86,7 +83,7 @@ public class ItemsAPI {
     public Response deleteItem(@PathParam("id") Integer id) {
         return Response
                 .status(Response.Status.OK)
-                .entity(itemsBean.remove(id))
+                .entity(this.itemsBean.remove(id))
                 .build();
     }
 }

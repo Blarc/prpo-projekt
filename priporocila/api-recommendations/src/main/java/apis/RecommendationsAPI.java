@@ -29,14 +29,14 @@ public class RecommendationsAPI {
 
     @GET
     public Response getAll() {
-        Stream<Map.Entry<Item, Integer>> sorted = recommendations
-                .entrySet()
-                .stream()
-                .sorted(Map.Entry.<Item, Integer>comparingByValue().reversed())
-                .collect(Collectors.toMap());
-
-
-        return Response.ok()
+        return Response.ok(
+                recommendations
+                    .entrySet()
+                    .stream()
+                    .sorted(Map.Entry.<Item, Integer>comparingByValue().reversed())
+                    .map(e -> e.getKey().getId())
+                    .collect(Collectors.toList())
+        ).build();
     }
 
     @POST

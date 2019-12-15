@@ -2,6 +2,7 @@ package managers;
 
 import beans.ItemsBean;
 import com.kumuluz.ee.configuration.utils.ConfigurationUtil;
+import entities.Item;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
@@ -9,9 +10,8 @@ import javax.inject.Inject;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.GenericType;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
+import java.util.stream.Collectors;
 
 @RequestScoped
 public class RecommendationsManager {
@@ -30,11 +30,13 @@ public class RecommendationsManager {
         baseUrl = ConfigurationUtil.getInstance().get("kumuluzee.server.base-url").orElse("http://localhost/servlet");
     }
 
-    public LinkedList<Integer> getRecommendations() {
+    public List<Item> getRecommendations() {
         return httpClient
                 .target(baseUrl)
                 .request()
-                .get(new GenericType<LinkedList<Integer>>() {
-        });
+                .get(new GenericType<List<Integer>>() {})
+                .stream()
+                .map(i -> itemsBean.get(i))
+                .collect(Collectors.toList());
     }
 }
