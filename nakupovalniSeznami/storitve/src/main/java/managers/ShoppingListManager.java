@@ -56,7 +56,7 @@ public class ShoppingListManager {
         shoppingList.setUser(user);
         shoppingList.setName(shoppingListDto.getName());
         shoppingList.setDescription(shoppingListDto.getDescription());
-        // shoppingList.setTimeCreated(Instant.now());
+        shoppingList.setTimeCreated(Instant.now());
 
         return shoppingList;
     }
@@ -65,7 +65,7 @@ public class ShoppingListManager {
 
         ShoppingList shoppingList = createShoppingListFromDto(shoppingListDto);
 
-        if (shoppingList ==  null) {
+        if (shoppingList == null) {
             return null;
         }
 
@@ -108,8 +108,7 @@ public class ShoppingListManager {
 
         if (shoppingList.getItems().remove(item)) {
             shoppingListsBean.update(shoppingList.getId(), shoppingList);
-        }
-        else {
+        } else {
             log.warning("Can't remove item from the shopping list. Item is not part of the shopping list.");
         }
 

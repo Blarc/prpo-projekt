@@ -26,7 +26,6 @@ public class RecommendationsManager {
     @PostConstruct
     private void init() {
         httpClient = ClientBuilder.newClient();
-        // TODO this might not work
         baseUrl = ConfigurationUtil.getInstance().get("kumuluzee.server.base-url").orElse("http://localhost/servlet");
     }
 
@@ -34,7 +33,8 @@ public class RecommendationsManager {
         return httpClient
                 .target(baseUrl)
                 .request()
-                .get(new GenericType<List<Integer>>() {})
+                .get(new GenericType<List<Integer>>() {
+                })
                 .stream()
                 .map(i -> itemsBean.get(i))
                 .collect(Collectors.toList());
