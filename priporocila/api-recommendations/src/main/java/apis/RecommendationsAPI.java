@@ -8,6 +8,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Path("recommendations")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -28,17 +29,14 @@ public class RecommendationsAPI {
 
     @GET
     public Response getAll() {
-        return Response.ok(
-            recommendations
+        Stream<Map.Entry<Item, Integer>> sorted = recommendations
                 .entrySet()
                 .stream()
                 .sorted(Map.Entry.<Item, Integer>comparingByValue().reversed())
-                .collect(Collectors.toMap(
-                        e -> e.getKey().getId(),
-                        Map.Entry::getValue,
-                        (e1, e2) -> e1 , LinkedHashMap::new
-                ))
-        ).build();
+                .collect(Collectors.toMap());
+
+
+        return Response.ok()
     }
 
     @POST

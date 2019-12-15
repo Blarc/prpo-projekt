@@ -3,6 +3,7 @@ package v1.apis;
 import beans.ItemsBean;
 import com.kumuluz.ee.rest.beans.QueryParameters;
 import entities.Item;
+import managers.RecommendationsManager;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -11,6 +12,8 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @ApplicationScoped
 @Path("items")
@@ -24,6 +27,9 @@ public class ItemsAPI {
     @Inject
     private ItemsBean itemsBean;
 
+    @Inject
+    private RecommendationsManager recommendationsManager;
+
     // TODO fdemsar @Operation annotation (glej UsersAPI)
     @GET
     public Response getAll() {
@@ -32,6 +38,16 @@ public class ItemsAPI {
                 .ok(itemsBean.getAll(queryParams))
                 .header("X-Total-Count", itemsBean.getAllCount(queryParams))
                 .build();
+    }
+
+    @GET
+    @Path("/recommended")
+    public Response getRecommended() {
+//        Map<String, Integer> recommendations = ((Map<String, Integer>) recommendationsManager.getRecommendations());
+        return Response.ok(
+                recommendationsManager.getRecommendations().stream()
+                .map(v -> itemsBean.get(v))
+        ).build();
     }
 
     // TODO fdemsar @Operation annotation (glej UsersAPI)
