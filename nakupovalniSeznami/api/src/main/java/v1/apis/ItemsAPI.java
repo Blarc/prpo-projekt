@@ -28,7 +28,27 @@ public class ItemsAPI {
     @Inject
     private RecommendationsManager recommendationsManager;
 
-    // TODO fdemsar @Operation annotation (glej UsersAPI)
+
+    @Operation
+            (description = "Returns list of items.", summary = "List of items",
+                    tags = "items",
+                    responses = {
+                            @ApiResponse(
+                                    responseCode = "200",
+                                    description = "List of items",
+                                    content = @Content(
+                                            array = @ArraySchema(
+                                                    schema = @Schema(implementation = Item.class)
+                                            )
+                                    ),
+                                    headers = {
+                                            @Header(
+                                                    name = "X-Total-Count",
+                                                    description = "Number of items returned."
+                                            )
+                                    }
+                            )
+                    })
     @GET
     public Response getAll() {
         QueryParameters queryParams = QueryParameters.query(this.uriInfo.getRequestUri().getQuery()).build();
@@ -38,7 +58,10 @@ public class ItemsAPI {
                 .build();
     }
 
+
     // TODO fdemsar @Operation annotation (glej UsersAPI)
+
+
     @GET
     @Path("/recommendations")
     public Response getRecommended() {
@@ -47,7 +70,21 @@ public class ItemsAPI {
                 .build();
     }
 
-    // TODO fdemsar @Operation annotation (glej UsersAPI)
+    @Operation
+            (description = "Returns an item specified by id.", summary = "Specified item",
+                    tags = "items",
+                    responses = {
+                            @ApiResponse(
+                                    responseCode = "200",
+                                    description = "Specified item",
+                                    content = @Content(
+                                            array = @ArraySchema(
+                                                    schema = @Schema(implementation = Item.class)
+                                            )
+                                    )
+                            )
+                    })
+
     @GET
     @Path("{id}")
     public Response getItem(@PathParam("id") Integer id) {
@@ -58,7 +95,20 @@ public class ItemsAPI {
         return Response.status(Response.Status.NOT_FOUND).build();
     }
 
-    // TODO fdemsar @Operation annotation (glej UsersAPI)
+    @Operation
+            (description = "Creates a new item with specified attributes.", summary = "New item",
+                    tags = "items",
+                    responses = {
+                            @ApiResponse(
+                                    responseCode = "200",
+                                    description = "Created item",
+                                    content = @Content(
+                                            array = @ArraySchema(
+                                                    schema = @Schema(implementation = Item.class)
+                                            )
+                                    )
+                            )
+                    })
     @POST
     public Response addItem(Item item) {
         return Response
@@ -67,7 +117,20 @@ public class ItemsAPI {
                 .build();
     }
 
-    // TODO fdemsar @Operation annotation (glej UsersAPI)
+    @Operation
+            (description = "Updates an item with specified id.", summary = "Update item",
+                    tags = "items",
+                    responses = {
+                            @ApiResponse(
+                                    responseCode = "200",
+                                    description = "Updated item",
+                                    content = @Content(
+                                            array = @ArraySchema(
+                                                    schema = @Schema(implementation = Item.class)
+                                            )
+                                    )
+                            )
+                    })
     @PUT
     @Path("{id}")
     public Response updateItem(@PathParam("id") Integer id, Item item) {
@@ -77,7 +140,20 @@ public class ItemsAPI {
                 .build();
     }
 
-    // TODO fdemsar @Operation annotation (glej UsersAPI)
+    @Operation
+            (description = "Deletes an item with specified id.", summary = "Delete item",
+                    tags = "items",
+                    responses = {
+                            @ApiResponse(
+                                    responseCode = "200",
+                                    description = "Deleted item",
+                                    content = @Content(
+                                            array = @ArraySchema(
+                                                    schema = @Schema(implementation = Item.class)
+                                            )
+                                    )
+                            )
+                    })
     @DELETE
     @Path("{id}")
     public Response deleteItem(@PathParam("id") Integer id) {

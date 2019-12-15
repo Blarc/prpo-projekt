@@ -25,6 +25,27 @@ public class MarksAPI {
     private MarksBean marksBean;
 
     // TODO fdemsar @Operation annotation (glej UsersAPI)
+
+    @Operation
+            (description = "Returns list of marks.", summary = "List of marks",
+                    tags = "marks",
+                    responses = {
+                            @ApiResponse(
+                                    responseCode = "200",
+                                    description = "List of marks",
+                                    content = @Content(
+                                            array = @ArraySchema(
+                                                    schema = @Schema(implementation = Mark.class)
+                                            )
+                                    ),
+                                    headers = {
+                                            @Header(
+                                                    name = "X-Total-Count",
+                                                    description = "Number of marks returned."
+                                            )
+                                    }
+                            )
+                    })
     @GET
     public Response getAll() {
         QueryParameters queryParams = QueryParameters.query(uriInfo.getRequestUri().getQuery()).build();
@@ -34,7 +55,20 @@ public class MarksAPI {
                 .build();
     }
 
-    // TODO fdemsar @Operation annotation (glej UsersAPI)
+    @Operation
+            (description = "Returns mark specified by id.", summary = "Specified mark",
+                    tags = "marks",
+                    responses = {
+                            @ApiResponse(
+                                    responseCode = "200",
+                                    description = "Specified mark",
+                                    content = @Content(
+                                            array = @ArraySchema(
+                                                    schema = @Schema(implementation = Mark.class)
+                                            )
+                                    )
+                            )
+                    })
     @GET
     @Path("{id}")
     public Response getMark(@PathParam("id") Integer id) {
@@ -45,7 +79,21 @@ public class MarksAPI {
         return Response.status(Response.Status.NOT_FOUND).build();
     }
 
-    // TODO fdemsar @Operation annotation (glej UsersAPI)
+
+    @Operation
+            (description = "Creates a new mark with specified attributes.", summary = "New mark",
+                    tags = "marks",
+                    responses = {
+                            @ApiResponse(
+                                    responseCode = "200",
+                                    description = "Created mark",
+                                    content = @Content(
+                                            array = @ArraySchema(
+                                                    schema = @Schema(implementation = Mark.class)
+                                            )
+                                    )
+                            )
+                    })
     @POST
     public Response addMark(Mark mark) {
         return Response
@@ -54,7 +102,20 @@ public class MarksAPI {
                 .build();
     }
 
-    // TODO fdemsar @Operation annotation (glej UsersAPI)
+    /@Operation
+            (description = "Updates a mark with specified id.", summary = "Update mark",
+                    tags = "marks",
+                    responses = {
+                            @ApiResponse(
+                                    responseCode = "200",
+                                    description = "Updated mark",
+                                    content = @Content(
+                                            array = @ArraySchema(
+                                                    schema = @Schema(implementation = Mark.class)
+                                            )
+                                    )
+                            )
+                    })
     @PUT
     @Path("{id}")
     public Response updateMark(@PathParam("id") Integer id, Mark mark) {
@@ -64,7 +125,20 @@ public class MarksAPI {
                 .build();
     }
 
-    // TODO fdemsar @Operation annotation (glej UsersAPI)
+    @Operation
+            (description = "Deletes a mark with specified id.", summary = "Delete mark",
+                    tags = "marks",
+                    responses = {
+                            @ApiResponse(
+                                    responseCode = "200",
+                                    description = "Deleted mark",
+                                    content = @Content(
+                                            array = @ArraySchema(
+                                                    schema = @Schema(implementation = Marks.class)
+                                            )
+                                    )
+                            )
+                    })
     @DELETE
     @Path("{id}")
     public Response deleteMark(@PathParam("id") Integer id) {

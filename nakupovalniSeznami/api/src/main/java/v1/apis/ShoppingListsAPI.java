@@ -30,7 +30,26 @@ public class ShoppingListsAPI {
     @Inject
     private ShoppingListsBean shoppingListsBean;
 
-    // TODO fdemsar @Operation annotation (glej UsersAPI)
+    @Operation
+            (description = "Returns list of shoppingLists.", summary = "List of shoppingLists",
+                    tags = "shoppingLists",
+                    responses = {
+                            @ApiResponse(
+                                    responseCode = "200",
+                                    description = "List of shoppingLists",
+                                    content = @Content(
+                                            array = @ArraySchema(
+                                                    schema = @Schema(implementation = ShoppingList.class)
+                                            )
+                                    ),
+                                    headers = {
+                                            @Header(
+                                                    name = "X-Total-Count",
+                                                    description = "Number of shoppingLists returned."
+                                            )
+                                    }
+                            )
+                    })
     @GET
     public Response getAll() {
         QueryParameters queryParams = QueryParameters.query(uriInfo.getRequestUri().getQuery()).build();
@@ -40,7 +59,20 @@ public class ShoppingListsAPI {
                 .build();
     }
 
-    // TODO fdemsar @Operation annotation (glej UsersAPI)
+    @Operation
+            (description = "Returns shoppingList specified by id.", summary = "Specified shoppingList",
+                    tags = "shoppingLists",
+                    responses = {
+                            @ApiResponse(
+                                    responseCode = "200",
+                                    description = "Specified shoppingList",
+                                    content = @Content(
+                                            array = @ArraySchema(
+                                                    schema = @Schema(implementation = ShoppingList.class)
+                                            )
+                                    )
+                            )
+                    })
     @GET
     @Path("{id}")
     public Response getShoppingList(@PathParam("id") Integer id) {
@@ -51,7 +83,21 @@ public class ShoppingListsAPI {
         return Response.ok(shoppingList).build();
     }
 
-    // TODO fdemsar @Operation annotation (glej UsersAPI)
+     //sj tukej ni treba DTO ane?
+    @Operation
+            (description = "Creates a new shoppingList with specified attributes.", summary = "New shoppingList",
+                    tags = "shoppingLists",
+                    responses = {
+                            @ApiResponse(
+                                    responseCode = "200",
+                                    description = "Created shoppingList",
+                                    content = @Content(
+                                            array = @ArraySchema(
+                                                    schema = @Schema(implementation = ShoppingList.class)
+                                            )
+                                    )
+                            )
+                    })
     @POST
     public Response addShoppingList(ShoppingListDto shoppingListDto) {
         ShoppingList shoppingList = sm.createShoppingList(shoppingListDto);
@@ -65,7 +111,20 @@ public class ShoppingListsAPI {
 
     }
 
-    // TODO fdemsar @Operation annotation (glej UsersAPI)
+    @Operation
+            (description = "Updates a shoppingList with specified id.", summary = "Update shoppingList",
+                    tags = "shoppingLists",
+                    responses = {
+                            @ApiResponse(
+                                    responseCode = "200",
+                                    description = "Updated shoppingList",
+                                    content = @Content(
+                                            array = @ArraySchema(
+                                                    schema = @Schema(implementation = ShoppingList.class)
+                                            )
+                                    )
+                            )
+                    })
     @PUT
     @Path("{id}")
     public Response updateShoppingList(@PathParam("id") Integer id, ShoppingListDto shoppingListDto) {
@@ -79,7 +138,20 @@ public class ShoppingListsAPI {
                 .build();
     }
 
-    // TODO fdemsar @Operation annotation (glej UsersAPI)
+    @Operation
+            (description = "Deletes a shoppingList with specified id.", summary = "Delete shoppingList",
+                    tags = "shoppingLists",
+                    responses = {
+                            @ApiResponse(
+                                    responseCode = "200",
+                                    description = "Deleted shoppingList",
+                                    content = @Content(
+                                            array = @ArraySchema(
+                                                    schema = @Schema(implementation = ShoppingList.class)
+                                            )
+                                    )
+                            )
+                    })
     @DELETE
     @Path("{id}")
     public Response deleteShoppingList(@PathParam("id") Integer id) {
