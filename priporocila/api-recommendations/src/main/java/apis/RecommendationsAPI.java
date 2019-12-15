@@ -41,7 +41,11 @@ public class RecommendationsAPI {
 
     @POST
     public Response addItem(Item item) {
-        // TODO fdemsar exception
+        if(item == null){
+            return Response
+                    .status(Response.Status.NOT_ACCEPTABLE)
+                    .build();
+        }
         return Response
                 .status(Response.Status.OK)
                 .entity(recommendations.put(item, recommendations.get(item) + 1))

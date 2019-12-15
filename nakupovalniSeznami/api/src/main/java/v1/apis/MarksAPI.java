@@ -24,7 +24,6 @@ public class MarksAPI {
     @Inject
     private MarksBean marksBean;
 
-    // TODO fdemsar @Operation annotation (glej UsersAPI)
 
     @Operation
             (description = "Returns list of marks.", summary = "List of marks",
