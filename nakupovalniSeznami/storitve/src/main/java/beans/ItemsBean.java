@@ -48,6 +48,12 @@ public class ItemsBean {
         return JPAUtils.queryEntitiesCount(em, Item.class, queryParams);
     }
 
+    public List<Item> getByName(String name) {
+        return em.createNamedQuery("Item.getByName", Item.class)
+                .setParameter("name", name)
+                .getResultList();
+    }
+
     public Item get(int itemId){ return em.find(Item.class, itemId);}
 
     @Transactional

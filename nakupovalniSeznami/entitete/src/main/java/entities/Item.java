@@ -9,7 +9,8 @@ import javax.persistence.*;
                 @NamedQuery(name = "Item.getAll", query = "SELECT i FROM item i"),
                 @NamedQuery(name = "Item.getById", query="SELECT i FROM item i  WHERE i.id = :id "),
                 @NamedQuery(name = "Item.getShoppingList", query = "SELECT i.shoppingList FROM item i "),
-                @NamedQuery(name = "Item.getDescription", query = "SELECT i.description FROM item i ")
+                @NamedQuery(name = "Item.getDescription", query = "SELECT i.description FROM item i "),
+                @NamedQuery(name = "Item.getByName", query = "SELECT i FROM item i WHERE i.name = :name ")
         })
 public class Item {
 

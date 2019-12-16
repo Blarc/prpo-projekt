@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import managers.ItemSearchManager;
 import managers.RecommendationsManager;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -30,6 +31,9 @@ public class ItemsAPI {
 
     @Inject
     private ItemsBean itemsBean;
+
+    @Inject
+    private ItemSearchManager itemSearchManager;
 
     @Inject
     private RecommendationsManager recommendationsManager;
@@ -65,9 +69,7 @@ public class ItemsAPI {
     }
 
 
-    // TODO fdemsar @Operation annotation (glej UsersAPI)
-
-
+    // TODO blarc @Operation annotation
     @GET
     @Path("/recommendations")
     public Response getRecommended() {
@@ -166,6 +168,15 @@ public class ItemsAPI {
         return Response
                 .status(Response.Status.OK)
                 .entity(this.itemsBean.remove(id))
+                .build();
+    }
+
+    @GET
+    @Path("/name/{name}")
+    public Response getItemByName(@PathParam("name") String name) {
+        return Response
+                .status(Response.Status.OK)
+                .entity(itemSearchManager.getByName(name))
                 .build();
     }
 }
