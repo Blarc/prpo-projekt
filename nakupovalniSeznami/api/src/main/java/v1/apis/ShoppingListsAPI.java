@@ -5,6 +5,12 @@ import com.kumuluz.ee.rest.beans.QueryParameters;
 import dtos.ShoppingListDto;
 import entities.ShoppingList;
 import exceptions.IllegalShoppingListDtoException;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.headers.Header;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import managers.ShoppingListManager;
 
 import javax.enterprise.context.ApplicationScoped;

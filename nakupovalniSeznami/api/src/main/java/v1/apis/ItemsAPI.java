@@ -3,6 +3,12 @@ package v1.apis;
 import beans.ItemsBean;
 import com.kumuluz.ee.rest.beans.QueryParameters;
 import entities.Item;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.headers.Header;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import managers.RecommendationsManager;
 
 import javax.enterprise.context.ApplicationScoped;

@@ -3,6 +3,12 @@ package v1.apis;
 import beans.MarksBean;
 import com.kumuluz.ee.rest.beans.QueryParameters;
 import entities.Mark;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.headers.Header;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -101,7 +107,7 @@ public class MarksAPI {
                 .build();
     }
 
-    /@Operation
+    @Operation
             (description = "Updates a mark with specified id.", summary = "Update mark",
                     tags = "marks",
                     responses = {
@@ -133,7 +139,7 @@ public class MarksAPI {
                                     description = "Deleted mark",
                                     content = @Content(
                                             array = @ArraySchema(
-                                                    schema = @Schema(implementation = Marks.class)
+                                                    schema = @Schema(implementation = Mark.class)
                                             )
                                     )
                             )
