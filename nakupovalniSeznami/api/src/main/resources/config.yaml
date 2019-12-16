@@ -3,8 +3,6 @@ kumuluzee:
   version: 1.0.0
   env:
     name: dev
-  server:
-    base-url: http://localhost:8081/v1/recommendations
   datasources:
     - jndi-name: jdbc/postgres
       connection-url: jdbc:postgresql://localhost:5432/postgres

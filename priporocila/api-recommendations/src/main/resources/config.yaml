@@ -4,6 +4,6 @@ kumuluzee:
   env:
     name: dev
   server:
-    base-url: http://localhost/v1/recommendations mi pa sh
+    base-url: http://localhost/v1/recommendations
     http:
       port: 8081

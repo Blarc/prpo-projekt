@@ -1,7 +1,6 @@
 package managers;
 
 import beans.ItemsBean;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import dtos.WordSimilarityDto;
 import entities.Item;
 
