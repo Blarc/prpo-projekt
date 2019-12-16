@@ -2,8 +2,7 @@ package managers;
 
 import beans.ItemsBean;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.kumuluz.ee.configuration.utils.ConfigurationUtil;
+import dtos.WordSimilarityDto;
 import entities.Item;
 
 import javax.annotation.PostConstruct;
@@ -11,6 +10,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.core.GenericType;
 import java.util.Comparator;
 import java.util.List;
 
@@ -36,22 +36,18 @@ public class ItemSearchManager {
         return allItems.stream()
                 .max(Comparator.comparingInt(item -> compareWords(item.getName(), name)))
                 .orElse(null);
-
     }
 
     private int compareWords(String word1, String word2) {
-        return Math.round(Float.parseFloat(httpClient
+        return Math.round(httpClient
                 .target(apiUrl)
                 .queryParam("ftext", word1)
                 .queryParam("stext", word2)
                 .request()
                 .header("x-rapidapi-host", host)
                 .header("x-rapidapi-key", key)
-                .get(String.class)
-                .split(":")[3]
-                .replace("}", "")
-                .replace("\"", "")
-                .replace(" ", "")
-        ));
+                .get(new GenericType<WordSimilarityDto>(){})
+                .getPercentage()
+        );
     }
 }
