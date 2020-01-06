@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: priporocila-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: priporocila
+  template:
+    metadata:
+      labels:
+        app: priporocila
+    spec:
+      containers:
+        - image: blarc/priporocila
+          name: priporocila
+          ports:
+            - containerPort: 8081
+              name: server
+              protocol: TCP
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: priporocila
+spec:
+  type: NodePort
+  ports:
+    - port: 8081
+      protocol: TCP
+      targetPort: server
+  selector:
+    app: priporocila
