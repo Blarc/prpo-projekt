@@ -26,7 +26,7 @@ public class RecommendationsManager {
     @PostConstruct
     private void init() {
         httpClient = ClientBuilder.newClient();
-        baseUrl = ConfigurationUtil.getInstance().get("kumuluzee.server.base-url").orElse("http://localhost/servlet");
+        baseUrl = ConfigurationUtil.getInstance().get("kumuluzee.priporocila.base-url").orElse("http://localhost/servlet");
     }
 
     public List<Item> getRecommendations() {

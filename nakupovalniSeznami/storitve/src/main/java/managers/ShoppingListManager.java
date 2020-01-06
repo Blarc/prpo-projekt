@@ -12,6 +12,8 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.time.Instant;
 import java.util.UUID;
 import java.util.logging.Logger;
@@ -43,7 +45,7 @@ public class ShoppingListManager {
         log.info("Deinicializacija zrna " + ShoppingListManager.class.getName() + " " + idBean);
     }
 
-    private ShoppingList createShoppingListFromDto(ShoppingListDto shoppingListDto) {
+    public ShoppingList createShoppingListFromDto(ShoppingListDto shoppingListDto) {
 
         User user = usersBean.get(shoppingListDto.getUserId());
 
@@ -59,17 +61,6 @@ public class ShoppingListManager {
         shoppingList.setTimeCreated(Instant.now());
 
         return shoppingList;
-    }
-
-    public ShoppingList createShoppingList(ShoppingListDto shoppingListDto) {
-
-        ShoppingList shoppingList = createShoppingListFromDto(shoppingListDto);
-
-        if (shoppingList == null) {
-            return null;
-        }
-
-        return shoppingListsBean.add(shoppingList);
     }
 
     public ShoppingList updateShoppingList(int id, ShoppingListDto shoppingListDto) {

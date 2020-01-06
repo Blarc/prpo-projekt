@@ -108,7 +108,7 @@ public class ShoppingListsAPI {
                     })
     @POST
     public Response addShoppingList(ShoppingListDto shoppingListDto) {
-        ShoppingList shoppingList = sm.createShoppingList(shoppingListDto);
+        ShoppingList shoppingList = sm.createShoppingListFromDto(shoppingListDto);
         if (shoppingList == null) {
             throw new IllegalShoppingListDtoException("Invalid parameters!");
         }

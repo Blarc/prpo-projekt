@@ -55,6 +55,10 @@ public class ShoppingListsBean {
     public ShoppingList add(ShoppingList a) {
         if (a != null) {
             em.persist(a);
+            if (!a.getUser().getShoppingList().contains(a)) {
+                a.getUser().getShoppingList().add(a);
+                em.merge(a.getUser());
+            }
         }
         return a;
     }
@@ -72,6 +76,10 @@ public class ShoppingListsBean {
         ShoppingList a = get(id);
         if (a != null) {
             em.remove(a);
+            if (a.getUser().getShoppingList().contains(a)) {
+                a.getUser().getShoppingList().remove(a);
+                em.merge(a.getUser());
+            }
         }
         return id;
     }

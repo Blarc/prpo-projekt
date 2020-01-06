@@ -25,3 +25,5 @@ kumuluzee:
         jndi-name: jdbc/postgres
       disk-space-health-check:
         threshold: 100000000
+  priporocila:
+    base-url: http://localhost:8081/v1/recommendations

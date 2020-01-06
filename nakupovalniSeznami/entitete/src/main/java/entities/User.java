@@ -21,7 +21,7 @@ public class User {
     private String lastName;
     @Column(name="username")
     private String username;
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<ShoppingList> shoppingList;
 
     public Integer getId() {

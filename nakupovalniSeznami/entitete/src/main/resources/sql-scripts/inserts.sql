@@ -20,10 +20,10 @@ INSERT INTO marks (id, address, description) VALUES (DEFAULT, 'Vecna pot 113', '
 INSERT INTO marks (id, address, description) VALUES (DEFAULT, 'Mestni log 13', 'New description.');
 INSERT INTO marks (id, address, description) VALUES (DEFAULT, 'Rozna dolina 5', 'New description.');
 
-INSERT INTO shopping_lists (id, description, name) VALUES (DEFAULT, 'Empty shopping list', 'Shopping list 1');
-INSERT INTO shopping_lists (id, description, name) VALUES (DEFAULT, 'Empty shopping list', 'Shopping list 2');
-INSERT INTO shopping_lists (id, description, name) VALUES (DEFAULT, 'Empty shopping list', 'Shopping list 3');
-INSERT INTO shopping_lists (id, description, name) VALUES (DEFAULT, 'Empty shopping list', 'Shopping list 4');
+INSERT INTO shopping_lists (id, description, name, user_id) VALUES (DEFAULT, 'Empty shopping list', 'Shopping list 1', 4);
+INSERT INTO shopping_lists (id, description, name, user_id) VALUES (DEFAULT, 'Empty shopping list', 'Shopping list 2', 4);
+INSERT INTO shopping_lists (id, description, name, user_id) VALUES (DEFAULT, 'Empty shopping list', 'Shopping list 3', 4);
+INSERT INTO shopping_lists (id, description, name, user_id) VALUES (DEFAULT, 'Empty shopping list', 'Shopping list 4', 4);
 
 
 
