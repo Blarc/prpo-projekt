@@ -1,0 +1,34 @@
+<div *ngIf="uporabnik">
+
+    <h3>Podrobnosti uporabnika {{uporabnik.ime}}</h3>
+
+    <table>
+        <tr>
+            <td>Id:</td>
+            <td>{{uporabnik.id}}</td>
+        </tr>
+        <tr>
+            <td>Ime:</td>
+            <td>{{uporabnik.ime}}</td>
+        </tr>
+        <tr>
+            <td>Priimek:</td>
+            <td>{{uporabnik.priimek}}</td>
+        </tr>
+        <tr>
+            <td>Uporabniško ime:</td>
+            <td>{{uporabnik.uporabniskoIme}}</td>
+        </tr>
+    </table>
+
+    <br>
+    <h4>Opomniki:</h4>
+    <ul>
+        <li *ngFor="let opomnik of uporabnik.opomniki">
+            {{opomnik.naslov}}: {{opomnik.opis}}
+        </li>
+    </ul>
+
+    <br>
+    <button (click)="nazaj()">Nazaj</button>
+</div>

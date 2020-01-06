@@ -1,6 +1,12 @@
+import {ShoppingList} from './shoppingList';
+
 export class Uporabnik {
     id: number;
-    ime: string;
+    name: string;
+    lastName: string;
+    username: string;
+    shoppingList: ShoppingList[];
+
 
     // ostali atributi
 }

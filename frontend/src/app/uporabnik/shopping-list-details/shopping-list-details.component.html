@@ -1,0 +1,19 @@
+<div *ngIf="shoppingList">
+
+    <h3>Podrobnosti nakupovalnega seznama: {{shoppingList.name}}</h3>
+
+    <table>
+        <tr>
+            <td>Id:</td>
+            <td>{{shoppingList.id}}</td>
+        </tr>
+        <tr>
+            <td>Ime:</td>
+            <td>{{shoppingList.name}}</td>
+        </tr>
+        <tr>
+            <td>Opis:</td>
+            <td>{{shoppingList.description}}</td>
+        </tr>
+    </table>
+</div>

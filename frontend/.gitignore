@@ -1,4 +1,3 @@
-/src/environments/
 .DS_STORE
 
 /dist/
@@ -39,7 +38,7 @@ yarn-error.log
 # rollup-test output
 /modules/rollup-test/dist/
 
-# User specific bazel settings
+# Uporabnik specific bazel settings
 .bazelrc.user
 
 .notes.md
@@ -48,7 +47,7 @@ baseline.json
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and WebStorm
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
-# User-specific stuff
+# Uporabnik-specific stuff
 .idea/**/workspace.xml
 .idea/**/tasks.xml
 .idea/**/usage.statistics.xml

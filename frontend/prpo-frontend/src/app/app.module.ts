@@ -10,8 +10,6 @@ import {UporabnikiComponent} from './uporabnik/uporabniki.component';
 import {UporabnikiDodajComponent} from './uporabnik/uporabniki-dodaj.component';
 import {UporabnikPodrobnostiComponent} from './uporabnik/uporabnik-podrobnosti.component';
 import {UporabnikService} from './uporabnik/services/uporabnik.service';
-import {ShoppingListService} from './uporabnik/services/shopping-list.service';
-import { ShoppingListDetailsComponent } from './uporabnik/shopping-list-details/shopping-list-details.component';
 
 
 @NgModule({
@@ -25,10 +23,9 @@ import { ShoppingListDetailsComponent } from './uporabnik/shopping-list-details/
         AppComponent,
         UporabnikiComponent,
         UporabnikPodrobnostiComponent,
-        UporabnikiDodajComponent,
-        ShoppingListDetailsComponent
+        UporabnikiDodajComponent
     ],
-    providers: [UporabnikService, ShoppingListService],
+    providers: [UporabnikService],
     bootstrap: [AppComponent]
 })
 export class AppModule {

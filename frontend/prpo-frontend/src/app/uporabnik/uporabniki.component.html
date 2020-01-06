@@ -2,7 +2,7 @@
 
 <ul class="uporabniki">
     <li *ngFor="let uporabnik of uporabniki" (click)="naPodrobnosti(uporabnik)">
-        <span>{{uporabnik.name}} {{uporabnik.lastName}}</span>
+        <span>{{uporabnik.ime}} {{uporabnik.priimek}}</span>
         <button class="delete"
                 (click)="delete(uporabnik); $event.stopPropagation()">x
         </button>
