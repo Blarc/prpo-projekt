@@ -1,6 +1,7 @@
 package v1.apis;
 
 import beans.ShoppingListsBean;
+import com.kumuluz.ee.cors.annotations.CrossOrigin;
 import com.kumuluz.ee.rest.beans.QueryParameters;
 import dtos.ShoppingListDto;
 import entities.ShoppingList;
@@ -25,6 +26,7 @@ import javax.ws.rs.core.UriInfo;
 @Path("shoppingLists")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
+@CrossOrigin(supportedMethods = "GET, POST, HEAD, PUT, DELETE, OPTIONS")
 public class ShoppingListsAPI {
 
     @Context

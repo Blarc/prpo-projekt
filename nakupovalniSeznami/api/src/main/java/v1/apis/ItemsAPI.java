@@ -1,6 +1,7 @@
 package v1.apis;
 
 import beans.ItemsBean;
+import com.kumuluz.ee.cors.annotations.CrossOrigin;
 import com.kumuluz.ee.rest.beans.QueryParameters;
 import entities.Item;
 import io.swagger.v3.oas.annotations.Operation;
@@ -24,6 +25,7 @@ import javax.ws.rs.core.UriInfo;
 @Path("items")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
+@CrossOrigin(supportedMethods = "GET, POST, HEAD, PUT, DELETE, OPTIONS")
 public class ItemsAPI {
 
     @Context
