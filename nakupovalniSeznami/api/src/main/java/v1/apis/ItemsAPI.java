@@ -71,7 +71,20 @@ public class ItemsAPI {
     }
 
 
-    // TODO blarc @Operation annotation
+    @Operation
+            (description = "Returns recommended items.", summary = "Recommended items",
+                    tags = "items",
+                    responses = {
+                            @ApiResponse(
+                                    responseCode = "200",
+                                    description = "Recommended items",
+                                    content = @Content(
+                                            array = @ArraySchema(
+                                                    schema = @Schema(implementation = Item.class)
+                                            )
+                                    )
+                            )
+                    })
     @GET
     @Path("/recommendations")
     public Response getRecommended() {
@@ -173,6 +186,20 @@ public class ItemsAPI {
                 .build();
     }
 
+    @Operation
+            (description = "Gets item by name similarity to given string", summary = "Item by name",
+                    tags = "items",
+                    responses = {
+                            @ApiResponse(
+                                    responseCode = "200",
+                                    description = "Item by name",
+                                    content = @Content(
+                                            array = @ArraySchema(
+                                                    schema = @Schema(implementation = Item.class)
+                                            )
+                                    )
+                            )
+                    })
     @GET
     @Path("/name/{name}")
     public Response getItemByName(@PathParam("name") String name) {

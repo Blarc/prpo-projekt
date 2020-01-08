@@ -12,7 +12,8 @@ import {Uporabnik} from '../models/uporabnik';
 export class ShoppingListService {
 
   private headers = new HttpHeaders({'Content-Type': 'application/json'});
-  private url = 'http://192.168.13.29:8080/v1/shoppingLists';
+  private url = 'http://localhost:8080/v1/shoppingLists';
+
 
   constructor(private http: HttpClient) { }
 

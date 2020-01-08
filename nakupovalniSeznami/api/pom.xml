@@ -30,6 +30,11 @@
             <version>${kumuluzee-openapi.version}</version>
         </dependency>
         <dependency>
+            <groupId>com.kumuluz.ee.openapi</groupId>
+            <artifactId>kumuluzee-openapi-ui</artifactId>
+            <version>${kumuluzee-openapi.version}</version>
+        </dependency>
+        <dependency>
             <groupId>com.kumuluz.ee.health</groupId>
             <artifactId>kumuluzee-health</artifactId>
             <version>${kumuluzee-health.version}</version>
@@ -40,4 +45,22 @@
             <version>${kumuluzee-cors.version}</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.kumuluz.ee</groupId>
+                <artifactId>kumuluzee-maven-plugin</artifactId>
+                <version>${kumuluzee.version}</version>
+                <executions>
+                    <execution>
+                        <id>package</id>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>

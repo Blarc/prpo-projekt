@@ -10,7 +10,7 @@ import { catchError } from 'rxjs/operators';
 export class UporabnikService {
 
     private headers = new HttpHeaders({'Content-Type': 'application/json'});
-    private url = 'http://192.168.13.29:8080/v1/users';
+    private url = 'http://localhost:8080/v1/users';
 
     constructor(private http: HttpClient) {
     }
